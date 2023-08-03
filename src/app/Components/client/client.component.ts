@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Product } from './Models/Product';
-import { ProductService } from './Services/product.service';
+import { Product } from 'src/app/Models/Product';
+import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-client',
+  templateUrl: './client.component.html',
+  styleUrls: ['./client.component.css']
 })
-export class AppComponent {
+export class ClientComponent {
   title = 'Products.UI';
   productsList : Product[]=[];
 
@@ -19,4 +19,5 @@ export class AppComponent {
       this.productsList = data)
     );
   }
+
 }
