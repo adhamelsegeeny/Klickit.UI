@@ -1,5 +1,5 @@
 # ProductsUI
-This project runs on a local database with configured connection strings and localhost ports that need to be adjusted according to the computer that will run the project
+This project runs on a local database with configured connection strings and localhost ports that need to be adjusted according to the computer that will run the project in addition to the usage of bootstrap as an installed module
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
