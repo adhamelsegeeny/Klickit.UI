@@ -13,6 +13,25 @@ export class ClientComponent {
 
   constructor(private productService: ProductService){}
 
+  //buy product using button id
+  buyProduct(event: Event){
+    const id= (event.target as Element).id;
+    let product= this.productsList[Number(id)-1];
+    this.productService.buyProduct(product)
+    .subscribe({
+      next: (res)=>{
+        alert(res.message);
+      },
+      error: (err)=>{
+        alert(err?.error.message);
+      }
+    });
+
+    console.log("Done")
+    
+  }
+
+
   ngOnInit(){
     this.productService.getProducts()
     .subscribe((data: Product[])=>(

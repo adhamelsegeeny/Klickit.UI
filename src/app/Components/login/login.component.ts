@@ -21,6 +21,8 @@ export class LoginComponent {
     let user = new User();
     user.username = username;
     user.password = password;
+    //store the user
+    localStorage.setItem('user',JSON.stringify(user));
     //call the login service and get the response message
     console.log(user)
     this.loginService.userLogin(user)
