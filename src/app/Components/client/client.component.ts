@@ -11,46 +11,58 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class ClientComponent {
   title = 'Products.UI';
-  productsList : Product[]=[];
-  cartList : Request[]=[];
+  productsList: Product[] = [];
+  cartList: Request[] = [];
 
-  constructor(private productService: ProductService, private router:Router){}
+  constructor(private productService: ProductService, private router: Router) { }
 
   //buy product using button id
-  buyProduct(event: Event){
-    const id= (event.target as Element).id;
-    let product= this.productsList[Number(id)-1];
-    this.productService.buyProduct(product)
-    .subscribe({
-      next: (res)=>{
-        alert(res.message);
-      },
-      error: (err)=>{
-        alert(err?.error.message);
+  buyProduct(event: Event) {
+    const id = (event.target as Element).id;
+    //loop 
+    for (let i = 0; i < this.productsList.length; i++) {
+      if (this.productsList[i].id == Number(id)) {
+
+
+        let product = this.productsList[i];
+        console.log(product)
+
+        this.productService.buyProduct(product)
+          .subscribe({
+            next: (res) => {
+              alert(res.message);
+            },
+            error: (err) => {
+              alert(err?.error.message);
+            }
+          });
+        break;
+
       }
-    });
+    }
+
 
     //add product to cart list   
     console.log("Done")
     //refresh the page
     window.location.reload();
-    
+
   }
 
 
-  ngOnInit(){
+  ngOnInit() {
     this.productService.getProducts()
-    .subscribe((data: Product[])=>(
-      this.productsList = data)
-    );
+      .subscribe((data: Product[]) => (
+        this.productsList = data)
+      );
 
     this.productService.getCart()
-    .subscribe((data: Request[])=>(
-      this.cartList = data)
-    );
+      .subscribe((data: Request[]) => (
+        this.cartList = data)
+      );
   }
 
-  logout(){
+  logout() {
     this.router.navigate(["/login"]);
   }
 
