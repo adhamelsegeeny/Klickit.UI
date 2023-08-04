@@ -31,7 +31,13 @@ export class LoginComponent {
         alert(res.message);
         if(res.message=="Login Success"){
           //redirect to the home page
-          this.router.navigate(["/home"]);
+          if(res.username=="admin"){
+            this.router.navigate(["/admin"]);
+          }
+          else{
+            this.router.navigate(["/home"]);
+          }
+          
         }
       },
       error: (err)=>{

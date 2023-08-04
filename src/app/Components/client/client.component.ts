@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/Models/Product';
+import { Request } from 'src/app/Models/Request';
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
@@ -10,8 +12,9 @@ import { ProductService } from 'src/app/Services/product.service';
 export class ClientComponent {
   title = 'Products.UI';
   productsList : Product[]=[];
+  cartList : Request[]=[];
 
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService, private router:Router){}
 
   //buy product using button id
   buyProduct(event: Event){
@@ -27,7 +30,10 @@ export class ClientComponent {
       }
     });
 
+    //add product to cart list   
     console.log("Done")
+    //refresh the page
+    window.location.reload();
     
   }
 
@@ -37,6 +43,15 @@ export class ClientComponent {
     .subscribe((data: Product[])=>(
       this.productsList = data)
     );
+
+    this.productService.getCart()
+    .subscribe((data: Request[])=>(
+      this.cartList = data)
+    );
+  }
+
+  logout(){
+    this.router.navigate(["/login"]);
   }
 
 }

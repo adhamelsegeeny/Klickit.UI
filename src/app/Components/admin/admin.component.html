@@ -26,38 +26,43 @@
     <h1>
         Products
     </h1>
+
+    <div class="col-md-3 my-3">
+        <input type="text" id="pName" class="form-control my-2" placeholder="Product Name">
+        <input type="text" id="pPrice" class="form-control my-2" placeholder="Product Price">
+        <button type="button" class="btn btn-primary mt-3" (click)="addProduct()">Add Product
+        </button>
+    </div>
     <div class="row" *ngFor="let product of productsList">
         <div class="col-md-3 my-3">
             {{product.name}} - Price :{{product.price | currency:'USD'}}
         </div>
         <!--button to buy-->
-        <div class="col-md-3 my-3">
-            <button type="button" id="{{product.id}}" class="btn btn-primary" (click)="buyProduct($event)">Buy
-            </button>
     </div>
-</div>
-<hr>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 my-3">
-            <h1>Cart</h1>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 my-3">
+                <h1>Orders</h1>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 my-3">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let Request of cartList">
-                        <td>{{Request.product_name}}</td>
-                        <td>{{Request.product_price | currency:'USD'}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-3 my-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Request of requestList">
+                            <td>{{Request.product_name}}</td>
+                            <td>{{Request.product_price | currency:'USD'}}</td>
+                            <td>{{Request.username}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
